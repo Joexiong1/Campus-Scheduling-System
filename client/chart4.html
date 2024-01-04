@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/echarts/echarts.js"></script>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <title>校园排课交互系统</title>
+
+</head>
+<body>
+    
+    <div class="">
+          <div  id="main4" style="width: auto;height: 550px;"></div>
+    </div>
+    <script src="./layui/layui.js"></script>
+    <script src="./js/charts.js"></script>
+    <script src="./js/jq/jquery-3.3.1.js"></script>
+    <script>
+      schinfo(4)
+    </script>
+    <script type="text/javascript">
+        
+      </script>
+      <script>
+        //Demo
+        layui.use(['form'], function() {
+            var form = layui.form;
+            form.render();
+            //监听提交
+            form.on('submit(formDemo)', function(data) {
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

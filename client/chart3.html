@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/echarts/echarts.js"></script>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <title>校园排课交互系统</title>
+
+</head>
+<body>
+    <div>
+        <div class="layui-form layui-row" id="school">
+          <div class=" layui-col-md6"> 
+            <fieldset class="layui-elem-field layui-field-title">
+              <legend id="chooseacaname">当前学院：</legend>
+            </fieldset>
+          </div>
+          <div class="layui-col-md4 layui-form">
+            <select name="school" id="selectschool" lay-verify="" lay-search lay-filter="toonchange">
+              <option value="" title="">-请选择(可查询）-</option>
+              <option value="教育学部" title="教育学部">教育学部</option>          
+              <option value="艺术学部" title="艺术学部">艺术学部</option>         
+              <option value="医学部" title="医学部">医学部</option>
+              <option value="马克思主义学院" title="马克思主义学院">马克思主义学院</option>
+              <option value="经济学院" title="经济学院">经济学院</option>
+              <option value="法学院" title="法学院">法学院</option>
+              <option value="心理学院" title="心理学院">心理学院</option>
+              <option value="体育学院" title="体育学院">体育学院</option>
+              <option value="人文学院" title="人文学院"selected>人文学院</option>
+              <option value="外国语学院" title="外国语学院">外国语学院</option>
+              <option value="传播学院" title="传播学院">传播学院</option>
+              <option value="数学与统计学院" title="数学与统计学院">数学与统计学院</option>
+              <option value="物理与光电工程学院" title="物理与光电工程学院">物理与光电工程学院</option>
+              <option value="化学与环境工程学院" title="化学与环境工程学院">化学与环境工程学院</option>
+              <option value="生命与海洋科学学院" title="生命与海洋科学学院">生命与海洋科学学院</option>
+              <option value="机电与控制工程学院" title="机电与控制工程学院">机电与控制工程学院</option>
+              <option value="材料学院" title="材料学院">材料学院</option>
+              <option value="电子与信息工程学院" title="电子与信息工程学院">电子与信息工程学院</option>
+              <option value="计算机与软件学院" title="计算机与软件学院">计算机与软件学院</option>
+              <option value="建筑与城市规划学院" title="建筑与城市规划学院">建筑与城市规划学院</option>
+              <option value="土木与交通工程学院" title="土木与交通工程学院">土木与交通工程学院</option>
+              <option value="管理学院" title="管理学院">管理学院</option>
+              <option value="政府管理学院" title="政府管理学院">政府管理学院</option>
+              <option value="高等研究院" title="高等研究院">高等研究院</option>
+              <option value="金融科技学院" title="金融科技学院">金融科技学院</option>
+              <option value="国际交流学院" title="国际交流学院">国际交流学院</option>
+            </select>
+          </div>
+        </div>
+    </div>
+    <div class="">
+          <div  id="main3" style="width: auto;height: 500px;"></div>
+    </div>
+    <script src="./layui/layui.js"></script>
+    <script src="./js/charts.js"></script>
+    <script src="./js/jq/jquery-3.3.1.js"></script>
+    <script>
+      var temp3=[[41, 54, 49], [12, 17, 22]]
+      initchart3(temp3)
+      layui.use(['jquery','form'], function() {
+          var $ = layui.jquery, form = layui.form;
+          form.on('select(toonchange)', function(data){   
+                  val=data.value;
+                  acaname=document.getElementById('chooseacaname')
+                  acaname.innerHTML='当前学院：'+val;
+                  acainfo(val,3)
+                  
+          });
+          form.render('select','tochangedd');
+      });
+    </script>
+    <script type="text/javascript">
+        
+      </script>
+      <script>
+        //Demo
+        layui.use(['form'], function() {
+            var form = layui.form;
+            form.render();
+            //监听提交
+            form.on('submit(formDemo)', function(data) {
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

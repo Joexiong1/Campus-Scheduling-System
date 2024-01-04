@@ -1,0 +1,163 @@
+/*按类class选择*/
+/*按id选择*/
+/*按标签选择*/
+
+
+.top{
+    position: absolute;
+    
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: space-between;
+    .logo{
+        display: flex;
+        p{
+            width: 100%;
+            height: 45px;
+            display: block;
+            line-height: 45px;
+            text-align: center;
+        }
+        img{
+            margin-right: 1em;
+        }
+        
+    }
+    ul{
+        display: flex;
+        li{
+            margin: 0.5em;
+            display: block;
+            a{
+                text-decoration: none;
+            }
+            a:link {color:black;}      /* 未访问链接*/
+            a:visited {color:black;}  /* 已访问链接 */
+            a:hover {color:black;}  /* 鼠标移动到链接上 */
+            a:active {color:black;}  /* 鼠标点击时 */
+        }
+    }
+}
+.main{
+    position: absolute;
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 60% 40%;
+    height: 93%;
+    width: 100%;
+    top: 5%;
+    .left{
+        
+        display: grid;
+        grid-template-rows:  10% 65% auto;
+        grid-template-columns: 100%;
+        .chooseclass{
+            display: grid;
+            grid-template-rows: 70% 30%;
+            grid-template-columns: 16% 28% 28% 28%;
+            .chooseclasstext{
+                text-align: center;
+                line-height: 70px;
+                font-size: 20px;
+                font-weight: bolder;
+            }
+            div{
+                font-size:15px;
+
+                font-family:"宋体";
+
+                font-weight:bold;
+            }
+        }
+       /* .showclasstable{
+            display: flex;
+            flex-direction: column;
+            overflow: scroll;
+            table {
+                
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+            td,th {
+                padding: 0;
+                text-align: center;
+            }
+             
+            .classtable {
+                border-collapse: collapse;
+                border-spacing: 0;
+                empty-cells: show;
+                border: 1px solid #cbcbcb;
+            }
+             
+            .classtable caption {
+                color: #000;
+                font: italic 85%/1 arial,sans-serif;
+                padding: 1em 0;
+                text-align: center;
+            }
+             
+            .classtable td,.classtable th {
+                border-left: 1px solid #cbcbcb;
+                border-width: 0 0 0 1px;
+                font-size: xx-small;
+                margin: 0;
+                overflow: visible;
+                padding: .5em 1em;
+            }
+             
+            .classtable thead {
+                background-color: #e0e0e0;
+                color: #000;
+                text-align: left;
+                vertical-align: bottom;
+            }
+             
+            
+            .tableflag td {
+                border-bottom: 1px solid #cbcbcb;
+            }
+             
+            .tableflag>tr:last-child>td {
+                border-bottom-width: 0;
+            }
+        }*/
+        .tochange{
+            display: grid;
+            grid-template-rows: auto;
+            grid-template-columns: 40% auto;
+            .tochange_options{
+                display: grid;
+                grid-template-rows:  auto;
+                grid-template-columns: auto;
+                div{
+                    padding: 0em
+                }
+            }
+            .changelog{
+                overflow: scroll;
+            }
+        }
+        
+    }
+    .right{
+        display: grid;
+        grid-template-rows: 65% auto;
+        
+        .showmap{
+            height: 100%;
+            width: 100%;
+            
+        }
+        .error{
+            overflow: scroll;
+        }
+        
+
+    }
+}
+.bottom{
+    position: absolute;
+    top: 97%;
+}

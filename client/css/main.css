@@ -1,0 +1,213 @@
+@charset "UTF-8";
+/*按类class选择*/
+/*按id选择*/
+/*按标签选择*/
+.top {
+  position: absolute;
+  width: 100%;
+  height: 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.top .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.top .logo p {
+  width: 100%;
+  height: 45px;
+  display: block;
+  line-height: 45px;
+  text-align: center;
+}
+
+.top .logo img {
+  margin-right: 1em;
+}
+
+.top ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.top ul li {
+  margin: 0.5em;
+  display: block;
+  /* 未访问链接*/
+  /* 已访问链接 */
+  /* 鼠标移动到链接上 */
+  /* 鼠标点击时 */
+}
+
+.top ul li a {
+  text-decoration: none;
+}
+
+.top ul li a:link {
+  color: black;
+}
+
+.top ul li a:visited {
+  color: black;
+}
+
+.top ul li a:hover {
+  color: black;
+}
+
+.top ul li a:active {
+  color: black;
+}
+
+.main {
+  position: absolute;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 100%;
+      grid-template-rows: 100%;
+  -ms-grid-columns: 60% 40%;
+      grid-template-columns: 60% 40%;
+  height: 93%;
+  width: 100%;
+  top: 5%;
+}
+
+.main .left {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 10% 65% auto;
+      grid-template-rows: 10% 65% auto;
+  -ms-grid-columns: 100%;
+      grid-template-columns: 100%;
+  /* .showclasstable{
+            display: flex;
+            flex-direction: column;
+            overflow: scroll;
+            table {
+                
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+            td,th {
+                padding: 0;
+                text-align: center;
+            }
+             
+            .classtable {
+                border-collapse: collapse;
+                border-spacing: 0;
+                empty-cells: show;
+                border: 1px solid #cbcbcb;
+            }
+             
+            .classtable caption {
+                color: #000;
+                font: italic 85%/1 arial,sans-serif;
+                padding: 1em 0;
+                text-align: center;
+            }
+             
+            .classtable td,.classtable th {
+                border-left: 1px solid #cbcbcb;
+                border-width: 0 0 0 1px;
+                font-size: xx-small;
+                margin: 0;
+                overflow: visible;
+                padding: .5em 1em;
+            }
+             
+            .classtable thead {
+                background-color: #e0e0e0;
+                color: #000;
+                text-align: left;
+                vertical-align: bottom;
+            }
+             
+            
+            .tableflag td {
+                border-bottom: 1px solid #cbcbcb;
+            }
+             
+            .tableflag>tr:last-child>td {
+                border-bottom-width: 0;
+            }
+        }*/
+}
+
+.main .left .chooseclass {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 70% 30%;
+      grid-template-rows: 70% 30%;
+  -ms-grid-columns: 16% 28% 28% 28%;
+      grid-template-columns: 16% 28% 28% 28%;
+}
+
+.main .left .chooseclass .chooseclasstext {
+  text-align: center;
+  line-height: 70px;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.main .left .chooseclass div {
+  font-size: 15px;
+  font-family: "宋体";
+  font-weight: bold;
+}
+
+.main .left .tochange {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  -ms-grid-columns: 40% auto;
+      grid-template-columns: 40% auto;
+}
+
+.main .left .tochange .tochange_options {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
+}
+
+.main .left .tochange .tochange_options div {
+  padding: 0em;
+}
+
+.main .left .tochange .changelog {
+  overflow: scroll;
+}
+
+.main .right {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 65% auto;
+      grid-template-rows: 65% auto;
+}
+
+.main .right .showmap {
+  height: 100%;
+  width: 100%;
+}
+
+.main .right .error {
+  overflow: scroll;
+}
+
+.bottom {
+  position: absolute;
+  top: 97%;
+}
+/*# sourceMappingURL=main.css.map */

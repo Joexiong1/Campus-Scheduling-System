@@ -1,0 +1,62 @@
+#maintitle{
+    display: flex;
+    justify-content: center;
+    min-height: 90vh;
+    h1{
+        position: relative;
+        margin-top: 160px;
+        font-size: 90px;
+        letter-spacing: 10px;
+        color: rgb(255, 255, 255);
+        text-transform: uppercase;
+        text-align: left;
+    }
+}
+h1:hover{	//为了兼容不同的浏览器，所以声明两个
+	-webkit-animation: Glow 0.5s ease infinite alternate;	//兼容Chrome
+    animation: Glow 0.5s ease infinite alternate;
+}
+@-webkit-keyframes Glow {	//兼容Chrome 和 Safari
+    from {
+        text-shadow: 0 0 10px #393D49,
+                     0 0 20px #393D49,
+                     0 0 30px #393D49,
+                     0 0 40px #009688,
+                     0 0 70px #009688,
+                     0 0 80px #009688,
+                     0 0 100px #009688,
+                     0 0 150px #009688;
+    }
+    to {
+        text-shadow: 0 0 10px #fff,
+                     0 0 20px #fff,
+                     0 0 30px #fff,
+                     0 0 40px #009688,
+                     0 0 70px #009688,
+                     0 0 80px #009688,
+                     0 0 100px #009688,
+                     0 0 150px #009688;
+    }
+}
+@keyframes Glow {
+    from {
+        text-shadow: 0 0 10px #393D49,
+                     0 0 20px #393D49,
+                     0 0 30px #393D49,
+                     0 0 40px #009688,
+                     0 0 70px #009688,
+                     0 0 80px #009688,
+                     0 0 100px #009688,
+                     0 0 150px #009688;
+    }
+    to {
+        text-shadow: 0 0 10px #393D49,
+                     0 0 20px #393D49,
+                     0 0 30px #393D49,
+                     0 0 40px #009688,
+                     0 0 70px #009688,
+                     0 0 80px #009688,
+                     0 0 100px #009688,
+                     0 0 150px #009688;
+    }
+}

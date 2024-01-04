@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+    <META HTTP-EQUIV="expires" CONTENT="0">
+    <!--引入css-->
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <!-- <link href="./css/selectCSS/jquery.searchableSelect.css" rel="stylesheet" type="text/css"> -->
+    
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        window._AMapSecurityConfig = {
+            securityJsCode:'12aa9a979246fbdb20ed7b3a826a88e5',
+        }
+    </script>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=8617b9dc986fb5f7216967a07af11952"></script> 
+    <script src="https://webapi.amap.com/loader.js"></script>
+    
+    
+
+    <title>校园排课交互系统</title>
+</head>
+
+<body onload="resettable()" onbeforeunload="">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+          <div class="layui-logo layui-hide-xs layui-bg-black "> <a href="open.html" style="color: white;">校园排课交互系统</a>  </div>
+          <!-- 头部区域（可配合layui 已有的水平导航） -->
+          <ul class="layui-nav layui-layout-right">
+            
+            
+            <li class="layui-nav-item layui-hide-xs"><a href="index.html">课表状态</a></li>
+            <li class="layui-nav-item layui-hide-xs"><a href="charts.html">数据展示</a></li>
+            <li class="layui-nav-item layui-hide-xs"><a href=""></a></li>
+            <li class="layui-nav-item">
+              <a href="javascript:;">深圳大学</a>
+              <dl class="layui-nav-child">
+                <dd><a href="https://www.szu.edu.cn/" target="_blank">深大主页</a></dd>
+                <dd><a href="https://www1.szu.edu.cn/" target="_blank">深大内部网</dd>
+                <dd><a href="http://ehall.szu.edu.cn/" target="_blank">办事大厅</a></dd>
+              </dl>
+            </li>
+          </ul>
+          <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item layui-hide layui-show-md-inline-block">
+              <a href="javascript:;">
+                <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img">
+                tester
+              </a>
+              <dl class="layui-nav-child">
+                <dd><a href="">Your Profile</a></dd>
+                <dd><a href="">Settings</a></dd>
+                <dd><a href="">Sign out</a></dd>
+              </dl>
+            </li>
+            <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
+              <a href="javascript:;">
+                操作菜单 <i class="layui-icon layui-icon-down"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="layui-side  layui-bg-black"></div>
+        
+        <div class="layui-body layui-bg-gray">
+          <!-- 内容主体区域 -->
+          <div style="padding: 15px; z-index: 999;">
+            <div class="layui-row layui-col-space5">
+              <div class="layui-col-md6" style="overflow-x: auto;">
+                <div class="" >
+                    <div class="showclasstable">
+                      <fieldset class="layui-elem-field layui-field-title">
+                        
+                        <legend id="chooseclassname">当前班级：</legend>
+                      </fieldset>
+                        <table id="classtable tableflag" class="layui-table " lay-size="sm" style="table-layout:fixed">
+                            <colgroup>
+                                <col width="80" >
+                                <col width="150">
+                                <col width="150">
+                                <col width="150">
+                                <col width="150">
+                                <col width="150">
+                                <col width="150">
+                                <col width="150">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>节次</th>
+                                    <th>星期一</th>
+                                    <th>星期二</th>
+                                    <th>星期三</th>
+                                    <th>星期四</th>
+                                    <th>星期五</th>
+                                    <th>星期六</th>
+                                    <th>星期日</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id='c1'>
+                                    <td>1节</td>
+                                    <td id='c1.1'>2</td>
+                                    <td id='c1.2'>3</td>
+                                    <td id='c1.3'>4</td>
+                                    <td id='c1.4'>5</td>
+                                    <td id='c1.5'>5</td>
+                                    <td id='c1.6'>7</td>
+                                    <td id='c1.7'>8</td>
+                                </tr>
+                                <tr id='c2'>
+                                    <td>2节</td>
+                                    <td id='c2.1'>2</td>
+                                    <td id='c2.2'>3</td>
+                                    <td id='c2.3'>4</td>
+                                    <td id='c2.4'>5</td>
+                                    <td id='c2.5'>5</td>
+                                    <td id='c2.6'>7</td>
+                                    <td id='c2.7'>8</td>
+                                </tr>
+                                <tr id='c3'>
+                                    <td>3节</td>
+                                    <td id='c3.1'>2</td>
+                                    <td id='c3.2'>3</td>
+                                    <td id='c3.3'>4</td>
+                                    <td id='c3.4'>5</td>
+                                    <td id='c3.5'>5</td>
+                                    <td id='c3.6'>7</td>
+                                    <td id='c3.7'>8</td>
+                                </tr>
+                                <tr id='c4'>
+                                    <td>4节</td>
+                                    <td id='c4.1'>2</td>
+                                    <td id='c4.2'>3</td>
+                                    <td id='c4.3'>4</td>
+                                    <td id='c4.4'>5</td>
+                                    <td id='c4.5'>5</td>
+                                    <td id='c4.6'>7</td>
+                                    <td id='c4.7'>8</td>
+                                </tr>
+                                <tr id='c5'>
+                                    <td>5节</td>
+                                    <td id='c5.1'>2</td>
+                                    <td id='c5.2'>3</td>
+                                    <td id='c5.3'>4</td>
+                                    <td id='c5.4'>5</td>
+                                    <td id='c5.5'>5</td>
+                                    <td id='c5.6'>7</td>
+                                    <td id='c5.7'>8</td>
+                                </tr>
+                                <tr id='c6'> 
+                                    <td id=>6节</td>
+                                    <td id='c6.1'>2</td>
+                                    <td id='c6.2'>3</td>
+                                    <td id='c6.3'>4</td>
+                                    <td id='c6.4'>5</td>
+                                    <td id='c6.5'>5</td>
+                                    <td id='c6.6'>7</td>
+                                    <td id='c6.7'>8</td>
+                                </tr>
+                                <tr id='c7'>
+                                    <td>7节</td>
+                                    <td id='c7.1'>2</td>
+                                    <td id='c7.2'>3</td>
+                                    <td id='c7.3'>4</td>
+                                    <td id='c7.4'>5</td>
+                                    <td id='c7.5'>5</td>
+                                    <td id='c7.6'>7</td>
+                                    <td id='c7.7'>8</td>
+                                </tr>
+                                <tr id='c8'>
+                                    <td>8节</td>
+                                    <td id='c8.1'>2</td>
+                                    <td id='c8.2'>3</td>
+                                    <td id='c8.3'>4</td>
+                                    <td id='c8.4'>5</td>
+                                    <td id='c8.5'>5</td>
+                                    <td id='c8.6'>7</td>
+                                    <td id='c8.7'>8</td>
+                                </tr>
+                                <tr id='c9'>
+                                    <td>9节</td>
+                                    <td id='c9.1'>2</td>
+                                    <td id='c9.2'>3</td>
+                                    <td id='c9.3'>4</td>
+                                    <td id='c9.4'>5</td>
+                                    <td id='c9.5'>5</td>
+                                    <td id='c9.6'>7</td>
+                                    <td id='c9.7'>8</td>
+                                </tr>
+                                <tr id='c10'>
+                                    <td>10节</td>
+                                    <td id='c10.1'>2</td>
+                                    <td id='c10.2'>3</td>
+                                    <td id='c10.3'>4</td>
+                                    <td id='c10.4'>5</td>
+                                    <td id='c10.5'>5</td>
+                                    <td id='c10.6'>7</td>
+                                    <td id='c10.7'>8</td>
+                                </tr>
+                                <tr id='c11'>
+                                    <td>11节</td>
+                                    <td id='c11.1'>2</td>
+                                    <td id='c11.2'>3</td>
+                                    <td id='c11.3'>4</td>
+                                    <td id='c11.4'>5</td>
+                                    <td id='c11.5'>5</td>
+                                    <td id='c11.6'>7</td>
+                                    <td id='c11.7'>8</td>
+                                </tr>
+                                <tr id='c12'>
+                                    <td>12节</td>
+                                    <td id='c12.1'>2</td>
+                                    <td id='c12.2'>3</td>
+                                    <td id='c12.3'>4</td>
+                                    <td id='c12.4'>5</td>
+                                    <td id='c12.5'>5</td>
+                                    <td id='c12.6'>7</td>
+                                    <td id='c12.7'>8</td>
+                                </tr>
+                                <tr id='c13'>
+                                    <td>13节</td>
+                                    <td id='c13.1'>2</td>
+                                    <td id='c13.2'>3</td>
+                                    <td id='c13.3'>4</td>
+                                    <td id='c13.4'>5</td>
+                                    <td id='c13.5'>5</td>
+                                    <td id='c13.6'>7</td>
+                                    <td id='c13.7'>8</td>
+                                </tr>
+                                <tr id='c14'>
+                                    <td>14节</td>
+                                    <td id='c14.1'>2</td>
+                                    <td id='c14.2'>3</td>
+                                    <td id='c14.3'>4</td>
+                                    <td id='c14.4'>5</td>
+                                    <td id='c14.5'>5</td>
+                                    <td id='c14.6'>7</td>
+                                    <td id='c14.7'>8</td>
+                                </tr>
+                            </tbody>    
+                        </table>
+                    </div>
+                </div>
+              </div>
+              <div class="layui-col-md6" style="height: 700px;">
+                <fieldset class="layui-elem-field layui-field-title">
+                  <legend>地图</legend>
+                </fieldset>
+                <div class="showmap" id="mapcontainer" style="height: 100%;width: 100%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="layui-footer">
+          <!-- 底部固定区域 -->
+          
+        </div>
+    </div>
+
+<!--   引入js文件   -->
+    <!-- <script src="./js/selectJS/jquery-1.11.1.min.js"></script> -->
+    <!-- <script src="./js/selectJS/jquery.searchableSelect.js"></script> -->
+      <script src="./layui/layui.js"></script>
+      <script>
+      //JS 
+      layui.use(['element', 'layer', 'util'], function(){
+        var element = layui.element
+        ,layer = layui.layer
+        ,util = layui.util
+        ,$ = layui.$;
+        
+        //头部事件
+        util.event('lay-header-event', {
+          //左侧菜单事件
+          menuLeft: function(othis){
+            layer.msg('展开左侧菜单的操作', {icon: 0});
+          }
+          ,menuRight: function(){
+            layer.open({
+              type: 1
+              ,title:'操作菜单'
+              ,btn: ['---使用方法---', '---选择班级---', '查看目前错误','设定修改方案','问题反馈评价']//,content: $('#methods')
+              ,btnAlign: 'c'
+              ,area: ['200px', '']
+              ,offset: 'lt' //左上角
+              ,anim: 5
+              ,shadeClose: true
+              ,move: false
+              ,skin: 'demo-class'
+              ,btn1:function(){
+                var layer = layui.layer;
+                layer.open({
+                  type: 1,
+                  title: '使用方法',
+                  shade: 0.5,
+                  area: [''],
+                  shadeClose: 1,
+                  closeBtn: 1,
+                  content:  $("#instructions"),
+                  scrollbar: false
+                });
+              }
+              ,btn2:function(){
+                  var layer = layui.layer;
+                  layer.open({
+                    type: 1,
+                    title: '请选择班级',
+                    maxmin: 0,
+                    closeBtn: 1,
+                    
+                    area: ['500px'],
+                    shadeClose: 1,
+                    skin: '',
+                    content:  $("#selectthings"),
+                    scrollbar: false
+                  });  
+              }
+              ,btn3:function(){
+                var layer = layui.layer;
+                layer.open({
+                  type: 1,
+                  title: '汇报可能存在缺陷',
+                  maxmin: 1,
+                  shade: 0,
+                  closeBtn: 1,
+                  zindex: 1,
+                  area: ['500px','400px'],
+                  shadeClose: 1,
+                  skin: '',
+                  content:  $("#showerrror"),
+                  scrollbar: false
+                  });
+              }
+              ,btn4:function(){
+                var layer = layui.layer;
+                layer.open({
+                  type: 1,
+                  title: '请设定修改方案',
+                  maxmin: 1,
+                  shade: 0,
+                  closeBtn: 1,
+                  zindex: 1,
+                  area: ['900px'],
+                  shadeClose: 1,
+                  skin: '',
+                  content:  $("#changethings"),
+                  scrollbar: false
+                  });
+              }
+              ,btn5:function(){
+                var layer = layui.layer;
+                layer.open({
+                  type: 1,
+                  title: '问题反馈与评价',
+                  shade: 0.5,
+                  maxmin: 1,
+                  area: ['700px','550px'],
+                  shadeClose: 1,
+                  closeBtn: 1,
+                  content:  $("#comments"),
+                  scrollbar: false
+                  
+                  });
+              }
+            });
+          }
+        });
+        
+      });
+      </script>
+
+      <script src="//unpkg.com/layui@2.7.5/dist/layui.js"></script>
+      <script src="./js/script.js"></script><!--返回-->
+      <script src="./layui/layui.js"></script>
+      <script>
+          // 动态更改选项
+          layui.use(['jquery','form'], function() {
+          var $ = layui.jquery, form = layui.form;
+          form.on('select(toonchange)', function(data){   
+                  var val=data.value;
+              console.info(val);
+              selectclass();
+          });
+          form.render('select','tochangedd');
+          
+      });
+      </script>
+      <script>
+          // 动态更改选项
+          layui.use(['jquery','form'], function() {
+          var $ = layui.jquery, form = layui.form;
+          form.on('select(toonchangedd)', function(data){   
+                  var val=data.value;
+              console.info(val);
+              selectDone();
+          });
+          form.render('select','toonchangedd');
+      });
+      </script>
+      <!--地图js-->
+      <script language="javascript">
+          var map;
+          function mapInit(){
+            map = new AMap.Map('mapcontainer', {
+              resizeEnable: true,
+              rotateEnable:true,
+              pitchEnable:true,
+              zoom: 17,
+              pitch:30,
+              rotation:0,
+              viewMode:'3D',//开启3D视图,默认为关闭
+              buildingAnimation:true,//楼块出现是否带动画
+              expandZoomRange:true,
+              zooms:[3,20],
+              center:[113.936638,22.532324]
+            });
+            
+            AMap.plugin(["AMap.ControlBar"],function(){
+              var controlBar = new AMap.ControlBar(
+                  {showZoomBar: false,
+                  showControlButton: true,
+                  position: 'RT'}
+              )
+              map.addControl(controlBar)  
+            })
+
+          //   map.addControl(new AMap.ControlBar({
+          //     showZoomBar:false,
+          //     showControlButton:true,
+          //     position:'RT'
+          //   }))
+          
+        }
+        mapInit()
+      </script>
+      <script>
+        layui.use(['dropdown', 'util', 'layer'], function(){
+          var element = layui.element;
+          var layer = layui.layer;
+          
+          //折叠面板点击事件
+          element.on('collapse(chooseclass)', function(data){
+            layer.msg('展开状态：'+ data.show);
+          });
+        });
+      </script>
+      <style type="text/css">
+        .layui-form-select dl { max-height:200px; }
+      </style>
+      <!--选课弹窗-->
+      
+     <!--地图展示-->
+     <script>
+       
+     </script>
+    <!--按钮样式-->
+    <style>
+      body .demo-class .layui-layer-btn .layui-layer-btn0{background:#009688;color: white;border-color: #E6E3E6;margin: 5px 20px;border-radius:6px;}
+      body .demo-class .layui-layer-btn .layui-layer-btn1{background:#009688;color: white;border-color: #E6E3E6;margin: 5px 20px;border-radius:6px;}
+      body .demo-class .layui-layer-btn .layui-layer-btn2{background:#009688;color: white;border-color: #E6E3E6;margin: 5px 20px;border-radius:6px;}
+      body .demo-class .layui-layer-btn .layui-layer-btn3{background:#009688;color: white;border-color: #E6E3E6;margin: 5px 20px;border-radius:6px;}
+      body .demo-class .layui-layer-btn .layui-layer-btn4{background:#009688;color: white;border-color: #E6E3E6;margin: 5px 20px;border-radius:6px;}
+    </style>
+    
+</body>
+
+<div>
+  <!--弹出层 选择班级-->
+  <div class="layui-col-md12" id="selectthings" style="display: none;">
+    <div class="" lay-filter="collapse">
+      <div class="">
+        <div class="" style= "z-index: 1; background-image:linear-gradient(to bottom right, rgba(233, 239, 250, 0.862),rgba(181, 210, 241, 0.8)) ; padding: 20px;">
+          <div class="layui-form" id="school">学院：
+            <select name="school" id="selectschool" lay-verify="" lay-search lay-filter="toonchange" >
+                <option value="" title="">-请选择(可查询）-</option>
+                <option value="教育学部" title="教育学部">教育学部</option>          
+                <option value="艺术学部" title="艺术学部">艺术学部</option>         
+                <option value="医学部" title="医学部">医学部</option>
+                <option value="马克思主义学院" title="马克思主义学院">马克思主义学院</option>
+                <option value="经济学院" title="经济学院">经济学院</option>
+                <option value="法学院" title="法学院">法学院</option>
+                <option value="心理学院" title="心理学院">心理学院</option>
+                <option value="体育学院" title="体育学院">体育学院</option>
+                <option value="人文学院" title="人文学院">人文学院</option>
+                <option value="外国语学院" title="外国语学院">外国语学院</option>
+                <option value="传播学院" title="传播学院">传播学院</option>
+                <option value="数学与统计学院" title="数学与统计学院">数学与统计学院</option>
+                <option value="物理与光电工程学院" title="物理与光电工程学院">物理与光电工程学院</option>
+                <option value="化学与环境工程学院" title="化学与环境工程学院">化学与环境工程学院</option>
+                <option value="生命与海洋科学学院" title="生命与海洋科学学院">生命与海洋科学学院</option>
+                <option value="机电与控制工程学院" title="机电与控制工程学院">机电与控制工程学院</option>
+                <option value="材料学院" title="材料学院">材料学院</option>
+                <option value="电子与信息工程学院" title="电子与信息工程学院">电子与信息工程学院</option>
+                <option value="计算机与软件学院" title="计算机与软件学院">计算机与软件学院</option>
+                <option value="建筑与城市规划学院" title="建筑与城市规划学院">建筑与城市规划学院</option>
+                <option value="土木与交通工程学院" title="土木与交通工程学院">土木与交通工程学院</option>
+                <option value="管理学院" title="管理学院">管理学院</option>
+                <option value="政府管理学院" title="政府管理学院">政府管理学院</option>
+                <option value="高等研究院" title="高等研究院">高等研究院</option>
+                <option value="金融科技学院" title="金融科技学院">金融科技学院</option>
+                <option value="国际交流学院" title="国际交流学院">国际交流学院</option>
+            </select>
+          </div>
+          <div class="layui-form" id="year">年级：
+            <select name="year" id="selectyear" lay-filter="toonchange">
+                <option value="" title="">-请选择-</option>
+                <option value="2021">2021级</option>
+                <option value="2020">2020级</option>
+                <option value="2019">2019级</option>
+                <option value="2018">2018级</option>
+            </select>
+        </div>
+        <div class="layui-form" id="class" lay-filter="tochanged">班级：
+            <select name="class"  id="selectclass" lay-search>
+                <option value="noclass" title="">-请选择班级-</option> 
+            </select>
+        </div>
+        <br>
+        <button class="layui-btn layui-btn-sm" onclick="selectDone()" id="closebtn1">确定提交</button><!--得到选择的学院 年级 班级-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--弹出层 选择修改-->
+  <div class="layui-col-md12" id="changethings" style="display: none;">
+    <div class="" lay-filter="collapse">
+      <div class="">
+        <div class="" >
+          <div class="tochange" >
+            <div class='tochange_options layui-col-md4' style="padding: 20px;">
+                <div class="layui-form layui-col-md12" lay-filter="toonchangedd">课程：
+                    <select name="班级" id="tochangeclass" onchange="setdefultchoise()">
+                        <option value="nochange">-选择需要修改的课程-</option>
+                    </select>
+                </div>
+                <div>上课时间：</div>
+                <div class="layui-form layui-col-md6">
+                    <select name="选择开始节次" id="tochange_start">
+                        <option value="nochange">-开始节次-</option>
+                        <option value="1-">1节</option>
+                        <option value="2-">2节</option>
+                        <option value="3-">3节</option>
+                        <option value="4-">4节</option>
+                        <option value="5-">5节</option>
+                        <option value="6-">6节</option>
+                        <option value="7-">7节</option>
+                        <option value="8-">8节</option>
+                        <option value="9-">9节</option>
+                        <option value="10-">10节</option>
+                        <option value="11-">11节</option>
+                        <option value="12-">12节</option>
+                        <option value="13-">13节</option>
+                        <option value="14-">14节</option>
+                    </select>
+                </div>
+                <div class="layui-form layui-col-md6">
+                    <select name="选择结束节次" id="tochange_end">
+                        <option value="nochange">-结束节次-</option>
+                        <option value="1节">1节</option>
+                        <option value="2节">2节</option>
+                        <option value="3节">3节</option>
+                        <option value="4节">4节</option>
+                        <option value="5节">5节</option>
+                        <option value="6节">6节</option>
+                        <option value="7节">7节</option>
+                        <option value="8节">8节</option>
+                        <option value="9节">9节</option>
+                        <option value="10节">10节</option>
+                        <option value="11节">11节</option>
+                        <option value="12节">12节</option>
+                        <option value="13节">13节</option>
+                        <option value="14节">14节</option>
+                    </select>
+                </div>
+                <div class="layui-form layui-col-md12">日期：
+                    <select name="选择日期" id="tochange_date">
+                        <option value="nochange">-选择日期-</option>
+                        <option value="星期一">星期一</option>
+                        <option value="星期二">星期二</option>
+                        <option value="星期三">星期三</option>
+                        <option value="星期四">星期四</option>
+                        <option value="星期五">星期五</option>
+                        <option value="星期六">星期六</option>
+                        <option value="星期日">星期日</option>
+                    </select>
+                </div>
+                <div class="layui-form layui-col-md12" lay-search>上课地点：
+                    <select name="选择上课地点" id="tochange_loca">
+                        <option value="nochange">-请选择上课地点-</option>
+                        <option value="汇紫楼">汇紫楼</option>
+                        <option value="致理楼">致理楼</option>
+                        <option value="建筑楼">建筑楼</option>
+                        <option value="汇文楼">汇文楼</option>
+                        <option value="综合楼">综合楼</option>
+                        <option value="汇星楼">汇星楼</option>
+                        <option value="南区电子学院大楼">南区电子学院大楼</option>
+                        <option value="南区光电楼">南区光电楼</option>
+                        <option value="南区机电学院">南区机电学院</option>
+                        <option value="南区计算机大楼">南区计算机大楼</option>
+                        <option value="南区篮球馆">南区篮球馆</option>
+                        <option value="南区排球馆">南区排球馆</option>
+                        <option value="南区体育馆">南区体育馆</option>
+                        <option value="南区信工学院">南区信工学院</option>
+                        <option value="南区羽毛球馆">南区羽毛球馆</option>
+                        <option value="南区足球场">南区足球场</option>
+                        <option value="师院">师院</option>
+                        <option value="师院器乐琴房">师院器乐琴房</option>
+                        <option value="师院声乐琴房">师院声乐琴房</option>
+                        <option value="声乐钢琴琴房">声乐钢琴琴房</option>
+                        <option value="国家院古琴室">国家院古琴室</option>
+                        <option value="金钟舞蹈室">金钟舞蹈室</option>
+                        <option value="田径场">田径场</option>
+                        <option value="小球馆">小球馆</option>
+                        <option value="艺术学院">艺术学院</option>
+                        <option value="元平馆">元平馆</option>
+                        <option value="元平游泳池">元平游泳池</option>
+                        <option value="海边游泳池">海边游泳池</option>
+                        <option value="海边网球场">海边网球场</option>                     
+                        <option value="高尔夫球场">高尔夫球场</option>
+                        <option value="高尔夫实练室">高尔夫实练室</option>
+                        <option value="高尔夫训练场">高尔夫训练场</option>
+                        <option value="奥尔夫实验室">奥尔夫实验室</option>
+                        <option value="蒙氏实验室">蒙氏实验室</option>
+                        <option value="传播学院">传播学院</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <button class="layui-btn layui-btn-sm" onclick="addchanged()">
+                        添加修改
+                    </button>
+                    <button class="layui-btn layui-btn-sm" onclick="runchanges()">
+                        运行修改
+                    </button>
+                </div> 
+            </div>
+            <div class="changelog layui-col-md8" style="padding: 20px;">
+                当前修改记录：
+                <ul id="changedsets"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--弹出层 目前错误-->
+  <div class="error" id="showerrror" style="display: none;">
+    <button class="layui-btn layui-btn-primary layui-border-green layui-btn-sm layui-btn-fluid layui-btn-radius" onclick="getError()">刷  新</button><!--事件的监听onclick-->
+    <ul id="result" ></ul><!--不同测流得到的结果就修改”result-->
+  </div>
+  <!--弹出层 使用方法-->
+  <div class=" layui-col-md12"style="display: none;">
+    <div  id="instructions">
+      <br>
+      <div>&nbsp<span class="layui-badge-dot layui-bg-green"></span>&nbsp&nbsp先通过选择选择班级，得到对应班级的课表信息&nbsp</div>
+      <br>
+      <div>&nbsp<span class="layui-badge-dot layui-bg-green"></span>&nbsp&nbsp可以查看当前课表存在的安排缺陷&nbsp</div>
+      <br>
+      <div>&nbsp<span class="layui-badge-dot layui-bg-green"></span>&nbsp&nbsp根据显示的安排错误可以设定对课表的修改方法，对于新课表也可以查看是否还存在安排缺陷&nbsp</div>
+      <br>
+    </div>
+  </div>
+  <!--弹出层 评论反馈区-->
+  <div class="layui-col-md12" id="comments" style="display: none;">
+    <div id="founderrors">
+      <form class="layui-form layui-form-pane" action="" lay-filter="tosubmit">
+        <div class="layui-field-box">
+          <fieldset class="layui-elem-field layui-field-title">
+            <legend>对现有功能的建议</legend>
+          </fieldset>
+          <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">1.使用方法是否明确以及更好的建议</label>
+            <div class="layui-input-block">
+              <textarea placeholder="请输入内容" class="layui-textarea" id="q1"></textarea>
+            </div>
+          </div>
+          <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">2.选择班级功能</label>
+            <div class="layui-input-block">
+              <textarea placeholder="请输入内容" class="layui-textarea" id="q2"></textarea>
+            </div>
+          </div>
+          <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">3.查看目前错误</label>
+            <div class="layui-input-block">
+              <textarea placeholder="请输入内容" class="layui-textarea" id="q3"></textarea>
+            </div>
+          </div>
+          <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">4.设定修改方案</label>
+            <div class="layui-input-block">
+              <textarea placeholder="请输入内容" class="layui-textarea" id="q4"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="layui-field-box">
+          <fieldset class="layui-elem-field layui-field-title">
+            <legend>对未来提升的建议</legend>
+          </fieldset>
+          <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">5.进行修改方案后得到的课表是否没有按预期得到结果</label>
+            <div class="layui-input-block">
+              <textarea placeholder="请输入内容" class="layui-textarea" id="q5"></textarea>
+            </div>
+          </div>
+          <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">6.对于课程的安排上有其他缺陷需要纳入考量</label>
+            <div class="layui-input-block">
+              <textarea placeholder="请输入内容" class="layui-textarea" id="q6"></textarea>
+            </div>
+          </div>  
+          <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">7.是否需要添加其他功能</label>
+            <div class="layui-input-block">
+              <textarea placeholder="请输入内容" class="layui-textarea" id="q7"></textarea>
+            </div>
+          </div>  
+          <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">8.是否发现其他bug</label>
+            <div class="layui-input-block">
+              <textarea placeholder="请输入内容" class="layui-textarea" id="q8"></textarea>
+            </div>
+          </div>  
+          <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">9.对本系统其他建议或意见</label>
+            <div class="layui-input-block">
+              <textarea placeholder="请输入内容" class="layui-textarea" id="q9"></textarea>
+            </div>
+          </div>
+        </div>  
+        <div class="layui-col-md4">&nbsp</div>
+        <button id="testSubmitBtn" type="button" class="layui-btn layui-col-md4">提交</button>
+        <div class="layui-col-md4"></div>
+      </form>   
+    </div>
+  </div>
+  <!--操作手段-->
+  <div class="layui-bg-black" id="methods"style="display: none;">
+    <div class="layui-col-md12" >
+      <button class="layui-btn layui-col-md10"  id="openlayerid4" style="margin: 5px 20px">--使用方法--</button>
+      <button class="layui-btn layui-col-md10"  id="openlayerid1" style="margin: 5px 20px">--点击选择班级--</button>
+      <button class="layui-btn layui-col-md10"  id="openlayerid3" style="margin: 5px 20px">--查看目前错误--</button>
+      <button class="layui-btn layui-col-md10"  id="openlayerid2" style="margin: 5px 20px">--设定修改方案--</button>
+      <button class="layui-btn layui-col-md10"  id="openlayerid5" style="margin: 5px 20px">--问题反馈和评价--</button>
+    </div>
+  </div>
+</div>
+</html>
